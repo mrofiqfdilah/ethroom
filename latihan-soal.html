@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETH ROOM | Kelola Soal</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: #faf6f0;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .badge-notif {
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.6;
+            }
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container-custom {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container-custom {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        .section-label-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            margin-bottom: 14px;
+        }
+
+        .section-label-vertical .dash {
+            width: 22px;
+            height: 3px;
+            border-radius: 2px;
+            background: #ac6700;
+            margin-bottom: 4px;
+        }
+
+        .section-label-vertical .label-main {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #443520;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .section-label-vertical .label-sub {
+            font-size: 14px;
+            font-weight: 400;
+            color: #6a4c2f;
+            margin: 0;
+            line-height: 1.2;
+            opacity: 0.7;
+        }
+
+        .menu-sidebar {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #6a4c2f;
+            border: 1.5px solid transparent;
+        }
+
+        .menu-sidebar:hover {
+            background: #fefcf8;
+            border-color: rgba(172, 103, 0, 0.20);
+        }
+
+        .menu-sidebar.active {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+            box-shadow: 0 4px 16px rgba(172, 103, 0, 0.25);
+        }
+
+        .menu-sidebar.active i {
+            color: white;
+        }
+
+        .menu-sidebar i {
+            font-size: 20px;
+            color: #ac6700;
+            transition: color 0.3s ease;
+        }
+
+        .menu-sidebar.active i {
+            color: white;
+        }
+
+        .form-input {
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #6a4c2f;
+            background: white;
+            width: 100%;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ac6700;
+            box-shadow: 0 0 0 3px rgba(172, 103, 0, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: #6a4c2f/40;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6a4c2f;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease;
+            background: #ac6700;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #8a5200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(172, 103, 0, 0.25);
+        }
+
+        .btn-secondary {
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #6a4c2f;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: #faf6f0;
+            border-color: #ac6700;
+        }
+
+        .btn-outline {
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #ac6700;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 13px;
+            border: 1.5px dashed #ac6700;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-outline:hover {
+            background: rgba(172, 103, 0, 0.05);
+            border-color: #ac6700;
+        }
+
+        .draft-card {
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.12);
+            background: white;
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+
+        .draft-card:hover {
+            border-color: #ac6700;
+            box-shadow: 0 4px 16px rgba(172, 103, 0, 0.08);
+        }
+
+        .three-dots-btn {
+            transition: all 0.3s ease;
+            padding: 4px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .three-dots-btn:hover {
+            background: rgba(172, 103, 0, 0.10);
+        }
+
+        .file-upload-area {
+            border: 2px dashed rgba(172, 103, 0, 0.25);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .file-upload-area:hover {
+            border-color: #ac6700;
+            background: rgba(172, 103, 0, 0.03);
+        }
+
+        .action-btn {
+            transition: all 0.3s ease;
+            padding: 6px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            background: rgba(172, 103, 0, 0.10);
+        }
+
+        .action-btn.delete {
+            color: #ef4444;
+        }
+
+        .action-btn.delete:hover {
+            background: rgba(239, 68, 68, 0.10);
+        }
+
+        @media (max-width: 768px) {
+            .menu-sidebar {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+
+            .menu-sidebar i {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container-custom {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 10px 20px;
+                font-size: 13px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-input {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .section-label-vertical .label-main {
+                font-size: 16px;
+            }
+
+            .section-label-vertical .label-sub {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="bg-white/95 backdrop-blur-sm shadow-sm border-b border-[#ac6700]/20 sticky top-0 z-50">
+        <div class="container-custom">
+            <div class="flex items-center justify-between h-20">
+
+                <div class="flex items-center gap-4 group cursor-pointer">
+                    <a href="index.html" class="flex items-center gap-4">
+                        <div class="nav-logo transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                            style="width: 50px; height: 50px;">
+                            <img src="./images/auth-logo.png" alt="ETH ROOM Logo" />
+                        </div>
+                        <div class="nav-brand hidden sm:block">
+                            <h1 class="text-xl font-extrabold tracking-wider leading-tight transition-colors duration-300 group-hover:text-[#ac6700]"
+                                style="font-family: 'Black Ops One', cursive; color:#005b1a;">
+                                ETH ROOM<span style="color: #ac6700;">.</span>
+                            </h1>
+                            <p class="text-xs text-[#6a4c2f]/70 leading-tight max-w-xs transition-colors duration-300 ">
+                                Ruang belajar berbasis etnopedagogi
+                            </p>
+                        </div>
+                        <div class="nav-brand block sm:hidden">
+                            <h1 class="text-xl font-extrabold tracking-wider leading-tight transition-colors duration-300 group-hover:text-[#ac6700]"
+                                style="font-family: 'Black Ops One', cursive; color:#005b1a; position: relative; left: -10px; top:3px;">
+                                ETH ROOM<span style="color: #ac6700;">.</span>
+                            </h1>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-3 sm:gap-5">
+                    <div class="relative flex items-center">
+                        <i
+                            class="ri-notification-3-line text-2xl text-[#ac6700] cursor-pointer hover:text-[#8a5200] transition-colors"></i>
+                        <span
+                            class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white badge-notif"></span>
+                    </div>
+                    <div class="w-11 h-11 rounded-full overflow-hidden border-2 border-[#005b1a]/60 flex-shrink-0">
+                        <img src="images/foto-guru.jpg" alt="Profile" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-custom py-8 md:py-12">
+
+        <a href="home-guru.html"
+            class="inline-flex items-center gap-2 text-[#6a4c2f]/60 hover:text-[#ac6700] transition-colors mb-4">
+            <i class="ri-arrow-left-line"></i>
+            <span class="text-sm font-medium">Kembali ke Home</span>
+        </a>
+
+        <div class="section-label-vertical">
+            <span class="dash"></span>
+            <p class="label-main">Kelola Soal</p>
+            <p class="label-sub">Buat dan kelola soal latihan</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6">
+
+            <!-- ===== SIDEBAR KIRI ===== -->
+            <div class="md:w-56 lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-2xl p-3 shadow-sm border border-[#ac6700]/10">
+                    <div class="menu-sidebar active" data-menu="buat">
+                        <i class="ri-file-add-line"></i>
+                        <span class="font-medium">Buat Soal</span>
+                    </div>
+                    <div class="menu-sidebar" data-menu="draft">
+                        <i class="ri-draft-line"></i>
+                        <span class="font-medium">Draft Soal</span>
+                    </div>
+                    <div class="menu-sidebar" data-menu="history">
+                        <i class="ri-history-line"></i>
+                        <span class="font-medium">History Jawaban</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== KONTEN KANAN ===== -->
+            <div class="flex-1">
+
+                <!-- ===== BUAT SOAL ===== -->
+                <div id="content-buat" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10">
+                    <h3 class="text-lg font-bold text-[#005b1a] mb-6">Buat Soal Baru</h3>
+
+                    <form class="space-y-5">
+                        <div>
+                            <label class="form-label">Nama Latihan</label>
+                            <input type="text" placeholder="Contoh: Latihan Fisika Bab 1" class="form-input" />
+                        </div>
+
+                        <div id="soal-container">
+                            <div class="soal-item space-y-3 p-4 bg-[#faf6f0] rounded-xl">
+                                <label class="form-label">Soal 1</label>
+                                <textarea rows="3" placeholder="Tulis pertanyaan soal..."
+                                    class="form-input resize-none"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="button" id="tambah-soal" class="btn-outline">
+                            <i class="ri-add-line mr-1"></i> Tambah Soal
+                        </button>
+
+                        <div class="flex flex-wrap gap-4">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="status" value="aktif" checked
+                                    class="accent-[#ac6700] w-4 h-4" />
+                                <span class="text-sm text-[#ac6700] font-medium">Aktif</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="status" value="draft" class="accent-[#ac6700] w-4 h-4" />
+                                <span class="text-sm text-[#6a4c2f] font-medium">Draft</span>
+                            </label>
+                        </div>
+
+                        <div class="file-upload-area">
+                            <i class="ri-image-2-line text-3xl text-[#ac6700]/50 mb-2 block"></i>
+                            <p class="text-sm text-[#6a4c2f]/60">Upload gambar soal <span
+                                    class="text-[#ac6700] font-medium">(Opsional)</span></p>
+                            <p class="text-xs text-[#6a4c2f]/40 mt-1">Klik untuk upload atau drag & drop</p>
+                            <input type="file" accept="image/*" class="hidden" id="file-upload" multiple />
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                            <button type="submit" class="btn-primary flex items-center justify-center gap-2">
+                                <i class="ri-save-line"></i> Simpan Soal
+                            </button>
+                            <button type="reset" class="btn-secondary flex items-center justify-center gap-2">
+                                <i class="ri-close-line"></i> Batal
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ===== DRAFT SOAL ===== -->
+                <div id="content-draft"
+                    class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-bold text-[#005b1a]">Draft Soal</h3>
+                        <span class="text-xs text-[#6a4c2f]/60">3 draft</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="draft-card flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Latihan Fisika Bab 1</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">2 soal · Dibuat 25 Jun 2026</p>
+                            </div>
+                            <div class="relative">
+                                <button class="three-dots-btn" onclick="toggleDropdown(this)">
+                                    <i class="ri-more-2-fill text-[#6a4c2f]"></i>
+                                </button>
+                                <div
+                                    class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
+                                    <button
+                                        class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2">
+                                        <i class="ri-checkbox-circle-line"></i> Aktifkan
+                                    </button>
+                                    <button
+                                        class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2">
+                                        <i class="ri-delete-bin-line"></i> Hapus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="draft-card flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Matematika Bab 3</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">5 soal · Dibuat 24 Jun 2026</p>
+                            </div>
+                            <div class="relative">
+                                <button class="three-dots-btn" onclick="toggleDropdown(this)">
+                                    <i class="ri-more-2-fill text-[#6a4c2f]"></i>
+                                </button>
+                                <div
+                                    class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
+                                    <button
+                                        class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2">
+                                        <i class="ri-checkbox-circle-line"></i> Aktifkan
+                                    </button>
+                                    <button
+                                        class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2">
+                                        <i class="ri-delete-bin-line"></i> Hapus
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== HISTORY JAWABAN ===== -->
+                <div id="content-history"
+                    class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-lg font-bold text-[#005b1a]">History Jawaban</h3>
+                        <span class="text-xs text-[#6a4c2f]/60">5 jawaban</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div class="draft-card flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Latihan Fisika Bab 1</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">Andi Pratama · 25 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <button class="action-btn p-2 rounded-lg hover:bg-[#ac6700]/10 transition-colors">
+                                    <i class="ri-eye-line text-[#ac6700] text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="draft-card flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Matematika Bab 3</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">Citra Dewi · 24 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <button class="action-btn p-2 rounded-lg hover:bg-[#ac6700]/10 transition-colors">
+                                    <i class="ri-eye-line text-[#ac6700] text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="draft-card flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Kimia Bab 2</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">Eko Prasetyo · 23 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <button class="action-btn p-2 rounded-lg hover:bg-[#ac6700]/10 transition-colors">
+                                    <i class="ri-eye-line text-[#ac6700] text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </main>
+
+    <script>
+        // Sidebar navigation
+        const menus = document.querySelectorAll('.menu-sidebar');
+        const contents = {
+            buat: document.getElementById('content-buat'),
+            draft: document.getElementById('content-draft'),
+            history: document.getElementById('content-history')
+        };
+
+        menus.forEach(menu => {
+            menu.addEventListener('click', function () {
+                menus.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+
+                const menuKey = this.getAttribute('data-menu');
+                Object.keys(contents).forEach(key => {
+                    contents[key].classList.toggle('hidden', key !== menuKey);
+                });
+            });
+        });
+
+        // Tambah Soal
+        document.getElementById('tambah-soal').addEventListener('click', function () {
+            const container = document.getElementById('soal-container');
+            const soalCount = container.querySelectorAll('.soal-item').length + 1;
+            const newSoal = document.createElement('div');
+            newSoal.className = 'soal-item space-y-3 p-4 bg-[#faf6f0] rounded-xl mt-4';
+            newSoal.innerHTML = `
+                <label class="form-label">Soal ${soalCount}</label>
+                <textarea rows="3" placeholder="Tulis pertanyaan soal..." class="form-input resize-none"></textarea>
+                <button type="button" class="text-red-400 hover:text-red-600 text-sm font-medium flex items-center gap-1 remove-soal mt-1">
+                    <i class="ri-close-circle-line"></i> Hapus soal
+                </button>
+            `;
+            container.appendChild(newSoal);
+
+            // Remove soal
+            newSoal.querySelector('.remove-soal').addEventListener('click', function () {
+                if (container.querySelectorAll('.soal-item').length > 1) {
+                    newSoal.remove();
+                } else {
+                    alert('Minimal 1 soal harus ada');
+                }
+            });
+        });
+
+        // File upload trigger
+        document.querySelector('.file-upload-area').addEventListener('click', function () {
+            document.getElementById('file-upload').click();
+        });
+
+        // Dropdown toggle
+        function toggleDropdown(btn) {
+            const dropdown = btn.nextElementSibling;
+            const allDropdowns = document.querySelectorAll('.dropdown-menu');
+            allDropdowns.forEach(d => {
+                if (d !== dropdown) d.classList.add('hidden');
+            });
+            dropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (!e.target.closest('.three-dots-btn') && !e.target.closest('.dropdown-menu')) {
+                document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.add('hidden'));
+            }
+        });
+    </script>
+
+</body>
+
+</html>

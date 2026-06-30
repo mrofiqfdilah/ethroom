@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETH ROOM | Home Guru</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <!-- Tambahkan font Black Ops One di head (sebelum style) -->
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
+
+    <!-- Kode navbar yang diperbarui -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: #faf6f0;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .menu-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background: white;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-6px);
+            border-color: #ac6700;
+            box-shadow: 0 12px 30px rgba(172, 103, 0, 0.2);
+            background: #fefcf8;
+        }
+
+        .menu-card .icon-wrapper {
+            width: 64px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 16px;
+            font-size: 28px;
+            background: rgba(0, 91, 26, 0.12);
+            color: #005b1a;
+            transition: all 0.3s ease;
+        }
+
+        .menu-card:hover .icon-wrapper {
+            background: #005b1a;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .badge-notif {
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.6;
+            }
+        }
+
+        .nav-brand h1 {
+            color: #ac6700;
+        }
+
+        .nav-brand p {
+            color: #6a4c2f;
+        }
+
+        /* ===== SECTION LABEL VERTICAL ===== */
+        .section-label-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            margin-bottom: 14px;
+        }
+
+        .section-label-vertical .dash {
+            width: 22px;
+            height: 3px;
+            border-radius: 2px;
+            background: #005b1a;
+            margin-bottom: 4px;
+        }
+
+        .section-label-vertical.is-green .dash {
+            background: #005b1a;
+        }
+
+        .section-label-vertical .label-main {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #443520;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .section-label-vertical.is-green .label-main {
+            color: #443520;
+        }
+
+        .section-label-vertical .label-sub {
+            font-size: 12px;
+            font-weight: 400;
+            color: #6a4c2f;
+            margin: 0;
+            line-height: 1.2;
+            opacity: 0.7;
+        }
+
+        /* ===== STAT STRIP ===== */
+        .stat-strip {
+            background: linear-gradient(135deg, #ac6700 0%, #6a4c2f 100%);
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-strip::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1.5px, transparent 1.5px);
+            background-size: 18px 18px;
+            pointer-events: none;
+        }
+
+        .stat-item {
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(14px);
+            animation: stat-rise 0.6s ease forwards;
+        }
+
+        .stat-item:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .stat-item:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .stat-item:nth-child(3) {
+            animation-delay: 0.25s;
+        }
+
+        .stat-item:nth-child(4) {
+            animation-delay: 0.35s;
+        }
+
+        @keyframes stat-rise {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-divider {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.14);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #fcda5d;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .stat-item:hover .stat-icon {
+            background: rgba(255, 255, 255, 0.24);
+            transform: scale(1.08) rotate(-4deg);
+        }
+
+        .stat-icon.icon-green {
+            color: #6fd98f;
+        }
+
+        .stat-value {
+            color: #ffffff;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .ring-wrap {
+            width: 42px;
+            height: 42px;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .ring-wrap svg {
+            transform: rotate(-90deg);
+        }
+
+        .ring-bg {
+            stroke: rgba(255, 255, 255, 0.18);
+        }
+
+        .ring-fg {
+            stroke: #5ca75c;
+            stroke-linecap: round;
+            stroke-dasharray: 113;
+            stroke-dashoffset: 113;
+            animation: ring-fill 1.2s 0.4s ease forwards;
+        }
+
+        @keyframes ring-fill {
+            to {
+                stroke-dashoffset: 10;
+            }
+        }
+
+        /* Container max-width */
+        .container-custom {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container-custom {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container-custom {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="bg-white/95 backdrop-blur-sm shadow-sm border-b border-[#ac6700]/20 sticky top-0 z-50">
+        <div class="container-custom">
+            <div class="flex items-center justify-between h-20">
+
+                <div class="flex items-center gap-4 group cursor-pointer">
+                    <div class="nav-logo transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                        style="width: 50px; height: 50px;">
+                        <img src="./images/auth-logo.png" alt="ETH ROOM Logo" />
+                    </div>
+                    <div class="nav-brand hidden sm:block">
+                        <h1 class="text-xl font-extrabold tracking-wider leading-tight transition-colors duration-300 group-hover:text-[#ac6700]"
+                            style="font-family: 'Black Ops One', cursive; color:#005b1a;">
+                            ETH ROOM<span style="color: #ac6700;">.</span>
+                        </h1>
+                        <p class="text-xs text-[#6a4c2f]/70 leading-tight max-w-xs transition-colors duration-300 ">
+                            Ruang belajar berbasis etnopedagogi
+                        </p>
+                    </div>
+                    <div class="nav-brand block sm:hidden">
+                        <h1 class="text-xl font-extrabold tracking-wider leading-tight transition-colors duration-300 group-hover:text-[#ac6700]"
+                            style="font-family: 'Black Ops One', cursive; color:#005b1a; position: relative; left: -10px; top:3px;">
+                            ETH ROOM<span style="color: #ac6700;">.</span>
+                        </h1>
+
+                    </div>
+                </div>
+                <!-- Kanan: Notif + Profile (tanpa sapaan) -->
+                <div class="flex items-center gap-3 sm:gap-5">
+                    <div class="relative flex items-center">
+                        <i
+                            class="ri-notification-3-line text-2xl text-[#ac6700] cursor-pointer hover:text-[#8a5200] transition-colors"></i>
+                        <span
+                            class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white badge-notif"></span>
+                    </div>
+                    <div class="w-11 h-11 rounded-full overflow-hidden border-2 border-[#005b1a]/60 flex-shrink-0">
+                        <img src="images/foto-guru.jpg" alt="Profile" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container-custom py-8 md:py-12">
+
+        <!-- Sapaan (sebelum statistik) -->
+        <div class="mb-6">
+            <p class="text-sm text-[#6a4c2f]/60">Selamat datang,</p>
+            <p class="text-2xl font-bold text-[#ac6700]">Budi Santoso, S.Pd.</p>
+        </div>
+
+        <!-- Label: Ringkasan Hari Ini -->
+        <div class="section-label-vertical">
+            <span class="dash"></span>
+            <p class="label-main">Ringkasan Hari Ini</p>
+            <p class="label-sub">Statistik aktivitas mengajar</p>
+        </div>
+
+        <!-- ===== STAT STRIP ===== -->
+        <div class="stat-strip mb-8 md:mb-10 px-5 md:px-8 py-6 md:py-7 shadow-lg shadow-[#ac6700]/15">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 md:gap-x-0 relative">
+
+                <div class="stat-item flex items-center gap-3 md:justify-center">
+                    <div class="stat-icon icon-green"><i class="ri-team-line"></i></div>
+                    <div>
+                        <p class="text-xl md:text-2xl font-extrabold stat-value" data-count="24">0</p>
+                        <p class="text-[11px] md:text-xs stat-label">Total Siswa</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:block stat-divider w-px absolute left-1/4 top-1/2 -translate-y-1/2 h-10"></div>
+
+                <div class="stat-item flex items-center gap-3 md:justify-center">
+                    <div class="stat-icon icon-green"><i class="ri-file-list-3-line"></i></div>
+                    <div>
+                        <p class="text-xl md:text-2xl font-extrabold stat-value" data-count="8">0</p>
+                        <p class="text-[11px] md:text-xs stat-label">LKM Aktif</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:block stat-divider w-px absolute left-1/2 top-1/2 -translate-y-1/2 h-10"></div>
+
+                <div class="stat-item flex items-center gap-3 md:justify-center">
+                    <div class="stat-icon icon-green"><i class="ri-database-2-line"></i></div>
+                    <div>
+                        <p class="text-xl md:text-2xl font-extrabold stat-value" data-count="15">0</p>
+                        <p class="text-[11px] md:text-xs stat-label">Bank Soal</p>
+                    </div>
+                </div>
+
+                <div class="hidden md:block stat-divider w-px absolute left-3/4 top-1/2 -translate-y-1/2 h-10"></div>
+
+                <div class="stat-item flex items-center gap-3 md:justify-center">
+                    <div class="ring-wrap">
+                        <svg width="42" height="42" viewBox="0 0 42 42">
+                            <circle class="ring-bg" cx="21" cy="21" r="18" fill="none" stroke-width="4" />
+                            <circle class="ring-fg" cx="21" cy="21" r="18" fill="none" stroke-width="4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <p class="text-xl md:text-2xl font-extrabold stat-value" data-count="92" data-suffix="%">0%</p>
+                        <p class="text-[11px] md:text-xs stat-label">Ketuntasan</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Label: Menu Utama -->
+        <div class="section-label-vertical is-green">
+            <span class="dash"></span>
+            <p class="label-main">Menu Utama</p>
+            <p class="label-sub">Pilihan aktivitas mengajar</p>
+        </div>
+
+        <!-- Grid 4 Menu -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+
+            <a href="lkm.html" class="menu-card rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md">
+                <div class="flex flex-col items-center text-center">
+                    <div class="icon-wrapper mb-3 md:mb-4">
+                        <i class="ri-file-text-line"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-bold text-[#005b1a]">LKM</h3>
+                    <p class="text-xs md:text-sm text-[#6a4c2f]/60 mt-0.5">Lembar Kerja Murid</p>
+                    <span class="text-xs text-[#005b1a] font-medium mt-2 md:mt-3 flex items-center gap-1">
+                        Kelola <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a href="latihan-soal.html" class="menu-card rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md">
+                <div class="flex flex-col items-center text-center">
+                    <div class="icon-wrapper mb-3 md:mb-4">
+                        <i class="ri-question-answer-line"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-bold text-[#005b1a]">Latihan Soal</h3>
+                    <p class="text-xs md:text-sm text-[#6a4c2f]/60 mt-0.5">Bank soal interaktif</p>
+                    <span class="text-xs text-[#005b1a] font-medium mt-2 md:mt-3 flex items-center gap-1">
+                        Kelola <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a href="#" class="menu-card rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md">
+                <div class="flex flex-col items-center text-center">
+                    <div class="icon-wrapper mb-3 md:mb-4">
+                        <i class="ri-community-line"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-bold text-[#005b1a]">Etno Classroom</h3>
+                    <p class="text-xs md:text-sm text-[#6a4c2f]/60 mt-0.5">Kelas berbasis budaya</p>
+                    <span class="text-xs text-[#005b1a] font-medium mt-2 md:mt-3 flex items-center gap-1">
+                        Buka <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+            </a>
+
+            <a href="#" class="menu-card rounded-2xl p-5 md:p-6 shadow-sm hover:shadow-md">
+                <div class="flex flex-col items-center text-center">
+                    <div class="icon-wrapper mb-3 md:mb-4">
+                        <i class="ri-bar-chart-2-line"></i>
+                    </div>
+                    <h3 class="text-base md:text-lg font-bold text-[#005b1a]">Evaluasi</h3>
+                    <p class="text-xs md:text-sm text-[#6a4c2f]/60 mt-0.5">Analisis pemahaman</p>
+                    <span class="text-xs text-[#005b1a] font-medium mt-2 md:mt-3 flex items-center gap-1">
+                        Lihat <i class="ri-arrow-right-line"></i>
+                    </span>
+                </div>
+            </a>
+
+        </div>
+
+
+
+    </main>
+
+    <script>
+        document.querySelectorAll('[data-count]').forEach((el) => {
+            const target = parseInt(el.getAttribute('data-count'), 10);
+            const suffix = el.getAttribute('data-suffix') || '';
+            const duration = 900;
+            const start = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(eased * target);
+                el.textContent = value + suffix;
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+            requestAnimationFrame(tick);
+        });
+    </script>
+
+</body>
+
+</html>
