@@ -89,7 +89,7 @@
             width: 22px;
             height: 3px;
             border-radius: 2px;
-            background: #ac6700;
+            background: #005b1a;
             margin-bottom: 4px;
         }
 
@@ -232,7 +232,7 @@
             border-color: #ac6700;
         }
 
-        .draft-card {
+        .soal-card {
             transition: all 0.3s ease;
             border: 1.5px solid rgba(172, 103, 0, 0.12);
             background: white;
@@ -240,9 +240,26 @@
             padding: 14px 18px;
         }
 
-        .draft-card:hover {
+        .soal-card:hover {
             border-color: #ac6700;
             box-shadow: 0 4px 16px rgba(172, 103, 0, 0.08);
+        }
+
+        .soal-card .status-badge {
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .soal-card .status-badge.aktif {
+            background: rgba(0, 91, 26, 0.10);
+            color: #005b1a;
+        }
+
+        .soal-card .status-badge.draft {
+            background: rgba(172, 103, 0, 0.10);
+            color: #ac6700;
         }
 
         .three-dots-btn {
@@ -275,18 +292,116 @@
             padding: 6px 10px;
             border-radius: 8px;
             cursor: pointer;
+            background: transparent;
+            border: none;
         }
 
-        .action-btn:hover {
-            background: rgba(172, 103, 0, 0.10);
+        .action-btn.eye {
+            color: #ac6700;
         }
 
         .action-btn.delete {
             color: #ef4444;
         }
 
-        .action-btn.delete:hover {
-            background: rgba(239, 68, 68, 0.10);
+        .filter-btn {
+            transition: all 0.2s ease;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            background: white;
+            color: #6a4c2f;
+        }
+
+        .filter-btn:hover {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .filter-btn.active {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .pagination-btn {
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            background: white;
+            color: #6a4c2f;
+        }
+
+        .pagination-btn:hover {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .pagination-btn.active {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn:disabled:hover {
+            background: white;
+            color: #6a4c2f;
+        }
+
+        .search-input {
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            border-radius: 12px;
+            padding: 8px 14px 8px 38px;
+            font-size: 14px;
+            color: #6a4c2f;
+            background: white;
+            width: 100%;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #ac6700;
+            box-shadow: 0 0 0 3px rgba(172, 103, 0, 0.15);
+        }
+
+        .search-input::placeholder {
+            color: #6a4c2f/40;
+        }
+
+        .date-input {
+            transition: all 0.2s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.15);
+            background: white;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #6a4c2f;
+            min-width: 130px;
+        }
+
+        .date-input:focus {
+            outline: none;
+            border-color: #ac6700;
+            box-shadow: 0 0 0 3px rgba(172, 103, 0, 0.12);
         }
 
         @media (max-width: 768px) {
@@ -297,6 +412,19 @@
 
             .menu-sidebar i {
                 font-size: 18px;
+            }
+
+            .pagination-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+
+            .date-input {
+                min-width: 100px;
+                font-size: 12px;
+                padding: 6px 10px;
             }
         }
 
@@ -326,6 +454,32 @@
             .section-label-vertical .label-sub {
                 font-size: 12px;
             }
+
+            .filter-btn {
+                padding: 4px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Custom SweetAlert2 override */
+        .swal2-popup {
+            border-radius: 16px !important;
+            font-family: "Plus Jakarta Sans", sans-serif !important;
+        }
+
+        .swal2-confirm {
+            background: #ac6700 !important;
+            border-radius: 12px !important;
+            font-weight: 600 !important;
+        }
+
+        .swal2-confirm:hover {
+            background: #8a5200 !important;
+        }
+
+        .swal2-cancel {
+            border-radius: 12px !important;
+            font-weight: 600 !important;
         }
     </style>
 </head>
@@ -398,13 +552,13 @@
                         <i class="ri-file-add-line"></i>
                         <span class="font-medium">Buat Soal</span>
                     </div>
-                    <div class="menu-sidebar" data-menu="draft">
-                        <i class="ri-draft-line"></i>
-                        <span class="font-medium">Draft Soal</span>
+                    <div class="menu-sidebar" data-menu="data">
+                        <i class="ri-database-2-line"></i>
+                        <span class="font-medium">Data Soal</span>
                     </div>
-                    <div class="menu-sidebar" data-menu="history">
-                        <i class="ri-history-line"></i>
-                        <span class="font-medium">History Jawaban</span>
+                    <div class="menu-sidebar" data-menu="jawaban">
+                        <i class="ri-file-list-3-line"></i>
+                        <span class="font-medium">Data Jawaban</span>
                     </div>
                 </div>
             </div>
@@ -465,80 +619,215 @@
                     </form>
                 </div>
 
-                <!-- ===== DRAFT SOAL ===== -->
-                <div id="content-draft"
+                <!-- ===== DATA SOAL ===== -->
+                <div id="content-data"
                     class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-bold text-[#005b1a]">Draft Soal</h3>
-                        <span class="text-xs text-[#6a4c2f]/60">3 draft</span>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <h3 class="text-lg font-bold text-[#005b1a]">Data Soal</h3>
+                        <span class="text-xs text-[#6a4c2f]/60">Total: 4 soal</span>
                     </div>
 
-                    <div class="space-y-3">
-                        <div class="draft-card flex items-center justify-between">
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <button class="filter-btn active" data-filter="all">Semua</button>
+                        <button class="filter-btn" data-filter="aktif">Aktif</button>
+                        <button class="filter-btn" data-filter="draft">Draft</button>
+                    </div>
+
+                    <div id="soal-list" class="space-y-3">
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-status="aktif" data-nama="Latihan Fisika Bab 1">
                             <div>
                                 <h4 class="font-semibold text-[#005b1a] text-sm">Latihan Fisika Bab 1</h4>
                                 <p class="text-xs text-[#6a4c2f]/60">2 soal · Dibuat 25 Jun 2026</p>
                             </div>
-                            <div class="relative">
-                                <button class="three-dots-btn" onclick="toggleDropdown(this)">
-                                    <i class="ri-more-2-fill text-[#6a4c2f]"></i>
-                                </button>
-                                <div
-                                    class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
-                                    <button
-                                        class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2">
-                                        <i class="ri-checkbox-circle-line"></i> Aktifkan
+                            <div class="flex items-center gap-3">
+                                <span class="status-badge aktif">Aktif</span>
+                                <div class="relative">
+                                    <button class="three-dots-btn" onclick="toggleDropdown(this)">
+                                        <i class="ri-more-2-fill text-[#6a4c2f]"></i>
                                     </button>
-                                    <button
-                                        class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2">
-                                        <i class="ri-delete-bin-line"></i> Hapus
-                                    </button>
+                                    <div
+                                        class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#6a4c2f] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2 btn-edit">
+                                            <i class="ri-edit-line"></i> Edit
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] flex items-center gap-2 btn-toggle-status">
+                                            <i class="ri-checkbox-circle-line"></i> <span class="toggle-text">Ubah ke
+                                                Draft</span>
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2 btn-delete">
+                                            <i class="ri-delete-bin-line"></i> Hapus
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="draft-card flex items-center justify-between">
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-status="draft" data-nama="Matematika Bab 3">
                             <div>
                                 <h4 class="font-semibold text-[#005b1a] text-sm">Matematika Bab 3</h4>
                                 <p class="text-xs text-[#6a4c2f]/60">5 soal · Dibuat 24 Jun 2026</p>
                             </div>
-                            <div class="relative">
-                                <button class="three-dots-btn" onclick="toggleDropdown(this)">
-                                    <i class="ri-more-2-fill text-[#6a4c2f]"></i>
-                                </button>
-                                <div
-                                    class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
-                                    <button
-                                        class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2">
-                                        <i class="ri-checkbox-circle-line"></i> Aktifkan
+                            <div class="flex items-center gap-3">
+                                <span class="status-badge draft">Draft</span>
+                                <div class="relative">
+                                    <button class="three-dots-btn" onclick="toggleDropdown(this)">
+                                        <i class="ri-more-2-fill text-[#6a4c2f]"></i>
                                     </button>
-                                    <button
-                                        class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2">
-                                        <i class="ri-delete-bin-line"></i> Hapus
-                                    </button>
+                                    <div
+                                        class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#6a4c2f] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2 btn-edit">
+                                            <i class="ri-edit-line"></i> Edit
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] flex items-center gap-2 btn-toggle-status">
+                                            <i class="ri-checkbox-circle-line"></i> <span
+                                                class="toggle-text">Aktifkan</span>
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2 btn-delete">
+                                            <i class="ri-delete-bin-line"></i> Hapus
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-status="aktif" data-nama="Kimia Bab 2">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Kimia Bab 2</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">3 soal · Dibuat 23 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="status-badge aktif">Aktif</span>
+                                <div class="relative">
+                                    <button class="three-dots-btn" onclick="toggleDropdown(this)">
+                                        <i class="ri-more-2-fill text-[#6a4c2f]"></i>
+                                    </button>
+                                    <div
+                                        class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#6a4c2f] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2 btn-edit">
+                                            <i class="ri-edit-line"></i> Edit
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] flex items-center gap-2 btn-toggle-status">
+                                            <i class="ri-checkbox-circle-line"></i> <span class="toggle-text">Ubah ke
+                                                Draft</span>
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2 btn-delete">
+                                            <i class="ri-delete-bin-line"></i> Hapus
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-status="draft" data-nama="Fisika Bab 2">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Fisika Bab 2</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">2 soal · Dibuat 18 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="status-badge draft">Draft</span>
+                                <div class="relative">
+                                    <button class="three-dots-btn" onclick="toggleDropdown(this)">
+                                        <i class="ri-more-2-fill text-[#6a4c2f]"></i>
+                                    </button>
+                                    <div
+                                        class="absolute right-0 mt-1 w-40 bg-white rounded-xl shadow-lg border border-[#ac6700]/10 hidden z-10 dropdown-menu">
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#6a4c2f] hover:bg-[#faf6f0] rounded-t-xl flex items-center gap-2 btn-edit">
+                                            <i class="ri-edit-line"></i> Edit
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-[#ac6700] hover:bg-[#faf6f0] flex items-center gap-2 btn-toggle-status">
+                                            <i class="ri-checkbox-circle-line"></i> <span
+                                                class="toggle-text">Aktifkan</span>
+                                        </button>
+                                        <button
+                                            class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-[#faf6f0] rounded-b-xl flex items-center gap-2 btn-delete">
+                                            <i class="ri-delete-bin-line"></i> Hapus
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <p class="text-sm text-[#6a4c2f]/60">
+                            Menampilkan <span id="visibleCount" class="font-medium text-[#6a4c2f]">4</span> dari <span
+                                class="font-medium text-[#6a4c2f]">4</span> soal
+                        </p>
+                        <div class="flex items-center gap-1.5 sm:gap-2">
+                            <button class="pagination-btn" disabled>
+                                <i class="ri-arrow-left-s-line text-lg"></i>
+                            </button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">
+                                <i class="ri-arrow-right-s-line text-lg"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- ===== HISTORY JAWABAN ===== -->
-                <div id="content-history"
+                <!-- ===== DATA JAWABAN ===== -->
+                <div id="content-jawaban"
                     class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
-                    <div class="flex items-center justify-between mb-6">
-                        <h3 class="text-lg font-bold text-[#005b1a]">History Jawaban</h3>
-                        <span class="text-xs text-[#6a4c2f]/60">5 jawaban</span>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                        <h3 class="text-lg font-bold text-[#005b1a]">Data Jawaban</h3>
+                        <span class="text-xs text-[#6a4c2f]/60">Total: 8 jawaban</span>
                     </div>
 
-                    <div class="space-y-3">
-                        <div class="draft-card flex items-center justify-between">
+                    <!-- Filter: Date + Search -->
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
+                        <!-- Date Filter -->
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <i class="ri-calendar-2-line text-[#ac6700] text-base"></i>
+                            <input type="date" class="date-input" id="dateFrom" value="2026-06-01" />
+                            <span class="text-xs text-[#6a4c2f]/30">—</span>
+                            <input type="date" class="date-input" id="dateTo" value="2026-06-30" />
+                        </div>
+
+                        <!-- Spacer -->
+                        <div class="hidden sm:block flex-1"></div>
+
+                        <!-- Search -->
+                        <div class="relative w-full sm:w-64">
+                            <i class="ri-search-line absolute left-3 top-1/2 -translate-y-1/2 text-[#6a4c2f]/40"></i>
+                            <input type="text" id="searchJawaban" placeholder="Cari judul..." class="search-input" />
+                        </div>
+
+                        <!-- Filter Button -->
+                        <button id="filterJawabanBtn"
+                            class="px-5 py-2 rounded-xl bg-[#ac6700] text-white text-sm font-medium hover:bg-[#8a5200] transition-colors whitespace-nowrap flex items-center gap-1.5">
+                            <i class="ri-filter-3-line"></i>
+                            Filter
+                        </button>
+                    </div>
+
+                    <div id="jawaban-list" class="space-y-3">
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-25" data-judul="Latihan Fisika Bab 1">
                             <div>
                                 <h4 class="font-semibold text-[#005b1a] text-sm">Latihan Fisika Bab 1</h4>
-                                <p class="text-xs text-[#6a4c2f]/60">Andi Pratama · 25 Jun 2026</p>
+                                <p class="text-xs text-[#6a4c2f]/60">25 Jun 2026</p>
                             </div>
-                            <div class="flex items-center gap-1">
-                                <button class="action-btn p-2 rounded-lg hover:bg-[#ac6700]/10 transition-colors">
-                                    <i class="ri-eye-line text-[#ac6700] text-lg"></i>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
                                 </button>
                                 <button class="action-btn delete p-2 rounded-lg">
                                     <i class="ri-delete-bin-line text-lg"></i>
@@ -546,14 +835,15 @@
                             </div>
                         </div>
 
-                        <div class="draft-card flex items-center justify-between">
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-24" data-judul="Matematika Bab 3">
                             <div>
                                 <h4 class="font-semibold text-[#005b1a] text-sm">Matematika Bab 3</h4>
-                                <p class="text-xs text-[#6a4c2f]/60">Citra Dewi · 24 Jun 2026</p>
+                                <p class="text-xs text-[#6a4c2f]/60">24 Jun 2026</p>
                             </div>
-                            <div class="flex items-center gap-1">
-                                <button class="action-btn p-2 rounded-lg hover:bg-[#ac6700]/10 transition-colors">
-                                    <i class="ri-eye-line text-[#ac6700] text-lg"></i>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
                                 </button>
                                 <button class="action-btn delete p-2 rounded-lg">
                                     <i class="ri-delete-bin-line text-lg"></i>
@@ -561,19 +851,118 @@
                             </div>
                         </div>
 
-                        <div class="draft-card flex items-center justify-between">
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-23" data-judul="Kimia Bab 2">
                             <div>
                                 <h4 class="font-semibold text-[#005b1a] text-sm">Kimia Bab 2</h4>
-                                <p class="text-xs text-[#6a4c2f]/60">Eko Prasetyo · 23 Jun 2026</p>
+                                <p class="text-xs text-[#6a4c2f]/60">23 Jun 2026</p>
                             </div>
-                            <div class="flex items-center gap-1">
-                                <button class="action-btn p-2 rounded-lg hover:bg-[#ac6700]/10 transition-colors">
-                                    <i class="ri-eye-line text-[#ac6700] text-lg"></i>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
                                 </button>
                                 <button class="action-btn delete p-2 rounded-lg">
                                     <i class="ri-delete-bin-line text-lg"></i>
                                 </button>
                             </div>
+                        </div>
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-22" data-judul="Latihan Fisika Bab 2">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Latihan Fisika Bab 2</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">22 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-21" data-judul="Matematika Bab 1">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Matematika Bab 1</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">21 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-20" data-judul="Kimia Bab 1">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Kimia Bab 1</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">20 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-19" data-judul="Latihan Fisika Bab 3">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Latihan Fisika Bab 3</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">19 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="soal-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                            data-tanggal="2026-06-18" data-judul="Matematika Bab 2">
+                            <div>
+                                <h4 class="font-semibold text-[#005b1a] text-sm">Matematika Bab 2</h4>
+                                <p class="text-xs text-[#6a4c2f]/60">18 Jun 2026</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button class="action-btn eye p-2 rounded-lg">
+                                    <i class="ri-eye-line text-lg"></i>
+                                </button>
+                                <button class="action-btn delete p-2 rounded-lg">
+                                    <i class="ri-delete-bin-line text-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <p class="text-sm text-[#6a4c2f]/60">
+                            Menampilkan <span id="jawabanVisibleCount" class="font-medium text-[#6a4c2f]">8</span> dari
+                            <span class="font-medium text-[#6a4c2f]">8</span> jawaban
+                        </p>
+                        <div class="flex items-center gap-1.5 sm:gap-2">
+                            <button class="pagination-btn" disabled>
+                                <i class="ri-arrow-left-s-line text-lg"></i>
+                            </button>
+                            <button class="pagination-btn active">1</button>
+                            <button class="pagination-btn">
+                                <i class="ri-arrow-right-s-line text-lg"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -581,16 +970,25 @@
             </div>
         </div>
 
+        <div class="text-center mt-8 pt-6 border-t border-[#ac6700]/10">
+            <p class="text-xs text-[#6a4c2f]/50">
+                &copy; 2026 ETH ROOM · Platform Pembelajaran Berbasis Etnopedagogi
+            </p>
+        </div>
 
     </main>
+
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    </script>
 
     <script>
         // Sidebar navigation
         const menus = document.querySelectorAll('.menu-sidebar');
         const contents = {
             buat: document.getElementById('content-buat'),
-            draft: document.getElementById('content-draft'),
-            history: document.getElementById('content-history')
+            data: document.getElementById('content-data'),
+            jawaban: document.getElementById('content-jawaban')
         };
 
         menus.forEach(menu => {
@@ -620,7 +1018,6 @@
             `;
             container.appendChild(newSoal);
 
-            // Remove soal
             newSoal.querySelector('.remove-soal').addEventListener('click', function () {
                 if (container.querySelectorAll('.soal-item').length > 1) {
                     newSoal.remove();
@@ -635,6 +1032,159 @@
             document.getElementById('file-upload').click();
         });
 
+        // Filter Data Soal
+        const filterButtons = document.querySelectorAll('#content-data .filter-btn');
+        const soalCards = document.querySelectorAll('#soal-list .soal-card');
+        const visibleCount = document.getElementById('visibleCount');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function () {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+
+                const filter = this.getAttribute('data-filter');
+                let count = 0;
+
+                soalCards.forEach(card => {
+                    const status = card.getAttribute('data-status');
+                    if (filter === 'all' || status === filter) {
+                        card.style.display = 'flex';
+                        count++;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                visibleCount.textContent = count;
+            });
+        });
+
+        // Filter Data Jawaban (Date + Search)
+        const filterJawabanBtn = document.getElementById('filterJawabanBtn');
+        const jawabanCards = document.querySelectorAll('#jawaban-list .soal-card');
+        const jawabanVisibleCount = document.getElementById('jawabanVisibleCount');
+        const searchJawaban = document.getElementById('searchJawaban');
+        const dateFrom = document.getElementById('dateFrom');
+        const dateTo = document.getElementById('dateTo');
+
+        function filterJawaban() {
+            const searchText = searchJawaban.value.toLowerCase().trim();
+            const fromDate = dateFrom.value;
+            const toDate = dateTo.value;
+            let count = 0;
+
+            jawabanCards.forEach(card => {
+                const judul = card.getAttribute('data-judul').toLowerCase();
+                const tanggal = card.getAttribute('data-tanggal');
+
+                const matchSearch = judul.includes(searchText);
+                const matchDate = (!fromDate || tanggal >= fromDate) && (!toDate || tanggal <= toDate);
+
+                if (matchSearch && matchDate) {
+                    card.style.display = 'flex';
+                    count++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            jawabanVisibleCount.textContent = count;
+        }
+
+        filterJawabanBtn.addEventListener('click', filterJawaban);
+
+        searchJawaban.addEventListener('keyup', function (e) {
+            if (e.key === 'Enter') {
+                filterJawaban();
+            }
+        });
+
+        // Toggle Status dengan SweetAlert2
+        document.querySelectorAll('.btn-toggle-status').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const card = this.closest('.soal-card');
+                const currentStatus = card.getAttribute('data-status');
+                const namaSoal = card.getAttribute('data-nama');
+                const statusBadge = card.querySelector('.status-badge');
+                const toggleText = this.querySelector('.toggle-text');
+
+                let title, text, confirmText, newStatus, newBadgeClass, newBadgeText;
+
+                if (currentStatus === 'aktif') {
+                    title = 'Ubah menjadi Draft?';
+                    text = `Apakah Anda yakin ingin mengubah "${namaSoal}" menjadi draft?`;
+                    confirmText = 'Ya, Ubah ke Draft';
+                    newStatus = 'draft';
+                    newBadgeClass = 'draft';
+                    newBadgeText = 'Draft';
+                } else {
+                    title = 'Aktifkan Soal?';
+                    text = `Apakah Anda yakin ingin mengaktifkan "${namaSoal}"?`;
+                    confirmText = 'Ya, Aktifkan';
+                    newStatus = 'aktif';
+                    newBadgeClass = 'aktif';
+                    newBadgeText = 'Aktif';
+                }
+
+                Swal.fire({
+                    title: title,
+                    text: text,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ac6700',
+                    cancelButtonColor: '#6a4c2f',
+                    confirmButtonText: confirmText,
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    customClass: {
+                        popup: 'swal2-popup',
+                        confirmButton: 'swal2-confirm',
+                        cancelButton: 'swal2-cancel'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        card.setAttribute('data-status', newStatus);
+                        statusBadge.className = `status-badge ${newBadgeClass}`;
+                        statusBadge.textContent = newBadgeText;
+
+                        if (newStatus === 'aktif') {
+                            toggleText.textContent = 'Ubah ke Draft';
+                        } else {
+                            toggleText.textContent = 'Aktifkan';
+                        }
+
+                        updateTotalCount();
+
+                        Swal.fire({
+                            title: 'Berhasil!',
+                            text: `Status "${namaSoal}" telah diperbarui.`,
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'swal2-popup'
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        function updateTotalCount() {
+            const allCards = document.querySelectorAll('#soal-list .soal-card');
+            let totalVisible = 0;
+            allCards.forEach(card => {
+                if (card.style.display !== 'none') totalVisible++;
+            });
+            const total = allCards.length;
+            const totalEl = document.querySelector('#content-data .text-xs.text-[#6a4c2f]/60');
+            if (totalEl) totalEl.textContent = `Total: ${total} soal`;
+            if (visibleCount) visibleCount.textContent = totalVisible;
+        }
+
         // Dropdown toggle
         function toggleDropdown(btn) {
             const dropdown = btn.nextElementSibling;
@@ -645,11 +1195,159 @@
             dropdown.classList.toggle('hidden');
         }
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function (e) {
             if (!e.target.closest('.three-dots-btn') && !e.target.closest('.dropdown-menu')) {
                 document.querySelectorAll('.dropdown-menu').forEach(d => d.classList.add('hidden'));
             }
+        });
+
+        // Delete confirmation for Data Soal
+        document.querySelectorAll('#content-data .btn-delete').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const card = this.closest('.soal-card');
+                const namaSoal = card.getAttribute('data-nama');
+
+                Swal.fire({
+                    title: 'Hapus Soal?',
+                    text: `Apakah Anda yakin ingin menghapus "${namaSoal}"? Tindakan ini tidak dapat dibatalkan.`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#6a4c2f',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    customClass: {
+                        popup: 'swal2-popup',
+                        confirmButton: 'swal2-confirm',
+                        cancelButton: 'swal2-cancel'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        card.remove();
+                        updateTotalCount();
+
+                        const visibleCards = document.querySelectorAll(
+                            '#soal-list .soal-card[style*="display: flex"], #soal-list .soal-card:not([style*="display: none"])'
+                        );
+                        let count = 0;
+                        visibleCards.forEach(c => {
+                            if (c.style.display !== 'none') count++;
+                        });
+                        if (visibleCount) visibleCount.textContent = count;
+
+                        Swal.fire({
+                            title: 'Terhapus!',
+                            text: `"${namaSoal}" telah dihapus.`,
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'swal2-popup'
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        // Edit button (placeholder)
+        document.querySelectorAll('.btn-edit').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const card = this.closest('.soal-card');
+                const namaSoal = card.getAttribute('data-nama');
+
+                Swal.fire({
+                    title: 'Edit Soal',
+                    text: `Fitur edit untuk "${namaSoal}" sedang dalam pengembangan.`,
+                    icon: 'info',
+                    confirmButtonColor: '#ac6700',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        popup: 'swal2-popup',
+                        confirmButton: 'swal2-confirm'
+                    }
+                });
+            });
+        });
+
+        // Eye button (lihat jawaban)
+        document.querySelectorAll('#content-jawaban .action-btn.eye').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const card = this.closest('.soal-card');
+                const judul = card.querySelector('h4').textContent;
+                const tanggal = card.querySelector('p').textContent;
+
+                Swal.fire({
+                    title: `Jawaban ${judul}`,
+                    html: `
+                        <div class="text-left text-sm">
+                            <p><strong>Tanggal:</strong> ${tanggal.trim()}</p>
+                            <hr class="my-3 border-[#ac6700]/20" />
+                            <p class="text-[#6a4c2f]">Jawaban siswa akan ditampilkan di sini.</p>
+                        </div>
+                    `,
+                    icon: 'info',
+                    confirmButtonColor: '#ac6700',
+                    confirmButtonText: 'Tutup',
+                    customClass: {
+                        popup: 'swal2-popup',
+                        confirmButton: 'swal2-confirm'
+                    }
+                });
+            });
+        });
+
+        // Delete jawaban
+        document.querySelectorAll('#content-jawaban .action-btn.delete').forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                const card = this.closest('.soal-card');
+                const judul = card.querySelector('h4').textContent;
+
+                Swal.fire({
+                    title: 'Hapus Jawaban?',
+                    text: `Apakah Anda yakin ingin menghapus jawaban "${judul}"?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#6a4c2f',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true,
+                    customClass: {
+                        popup: 'swal2-popup',
+                        confirmButton: 'swal2-confirm',
+                        cancelButton: 'swal2-cancel'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        card.remove();
+                        const remaining = document.querySelectorAll('#jawaban-list .soal-card');
+                        document.querySelector('#content-jawaban .text-xs.text-[#6a4c2f]/60')
+                            .textContent = `Total: ${remaining.length} jawaban`;
+                        document.getElementById('jawabanVisibleCount').textContent = remaining.length;
+
+                        Swal.fire({
+                            title: 'Terhapus!',
+                            text: `Jawaban "${judul}" telah dihapus.`,
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false,
+                            customClass: {
+                                popup: 'swal2-popup'
+                            }
+                        });
+                    }
+                });
+            });
         });
     </script>
 

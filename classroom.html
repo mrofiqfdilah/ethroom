@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETH ROOM | Classroom</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: #faf6f0;
+        }
+
+        .nav-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .badge-notif {
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.3);
+                opacity: 0.6;
+            }
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .container-custom {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container-custom {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+        }
+
+        .section-label-vertical {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+            margin-bottom: 14px;
+        }
+
+        .section-label-vertical .dash {
+            width: 22px;
+            height: 3px;
+            border-radius: 2px;
+            background: #ac6700;
+            margin-bottom: 4px;
+        }
+
+        .section-label-vertical .label-main {
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #443520;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .section-label-vertical .label-sub {
+            font-size: 14px;
+            font-weight: 400;
+            color: #6a4c2f;
+            margin: 0;
+            line-height: 1.2;
+            opacity: 0.7;
+        }
+
+        .menu-sidebar {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-radius: 12px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #6a4c2f;
+            border: 1.5px solid transparent;
+        }
+
+        .menu-sidebar:hover {
+            background: #fefcf8;
+            border-color: rgba(172, 103, 0, 0.20);
+        }
+
+        .menu-sidebar.active {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+            box-shadow: 0 4px 16px rgba(172, 103, 0, 0.25);
+        }
+
+        .menu-sidebar.active i {
+            color: white;
+        }
+
+        .menu-sidebar i {
+            font-size: 20px;
+            color: #ac6700;
+            transition: color 0.3s ease;
+        }
+
+        .menu-sidebar.active i {
+            color: white;
+        }
+
+        .form-input {
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #6a4c2f;
+            background: white;
+            width: 100%;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #ac6700;
+            box-shadow: 0 0 0 3px rgba(172, 103, 0, 0.15);
+        }
+
+        .form-input::placeholder {
+            color: #6a4c2f/40;
+        }
+
+        .form-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #6a4c2f;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease;
+            background: #ac6700;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: #8a5200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(172, 103, 0, 0.25);
+        }
+
+        .btn-secondary {
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #6a4c2f;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: #faf6f0;
+            border-color: #ac6700;
+        }
+
+        .btn-success {
+            transition: all 0.3s ease;
+            background: #005b1a;
+            color: white;
+            padding: 10px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-success:hover {
+            background: #003d12;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 91, 26, 0.25);
+        }
+
+        .class-card {
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.12);
+            background: white;
+            border-radius: 12px;
+            padding: 14px 18px;
+        }
+
+        .class-card:hover {
+            border-color: #ac6700;
+            box-shadow: 0 4px 16px rgba(172, 103, 0, 0.08);
+        }
+
+        .action-btn {
+            transition: all 0.3s ease;
+            padding: 4px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+        }
+
+        .action-btn.eye {
+            color: #ac6700;
+        }
+
+        .action-btn.edit {
+            color: #005b1a;
+        }
+
+        .action-btn.delete {
+            color: #ef4444;
+        }
+
+        .action-btn.add {
+            color: #005b1a;
+        }
+
+        .btn-sm {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-sm:hover {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .btn-sm.active {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .pagination-btn {
+            transition: all 0.2s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            background: white;
+            color: #6a4c2f;
+        }
+
+        .pagination-btn:hover {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .pagination-btn.active {
+            background: #ac6700;
+            color: white;
+            border-color: #ac6700;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .pagination-btn:disabled:hover {
+            background: white;
+            color: #6a4c2f;
+        }
+
+        .select-input {
+            transition: all 0.3s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            border-radius: 12px;
+            padding: 10px 14px;
+            font-size: 14px;
+            color: #6a4c2f;
+            background: white;
+            width: 100%;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236a4c2f' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        .select-input:focus {
+            outline: none;
+            border-color: #ac6700;
+            box-shadow: 0 0 0 3px rgba(172, 103, 0, 0.15);
+        }
+
+        /* Radio style untuk status absensi - hanya 1 status yang ditampilkan */
+        .status-radio {
+            display: none;
+        }
+
+        .status-radio+label {
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #d1d5db;
+            background: white;
+            color: #6a4c2f;
+            transition: all 0.2s ease;
+        }
+
+        .status-radio+label:hover {
+            border-color: #ac6700;
+        }
+
+        .status-radio:checked+label {
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Warna random untuk setiap status */
+        .status-radio:checked+label.hadir-label {
+            border-color: #15803d;
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status-radio:checked+label.izin-label {
+            border-color: #b45309;
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .status-radio:checked+label.sakit-label {
+            border-color: #2563eb;
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .status-radio:checked+label.tidak-hadir-label {
+            border-color: #6b7280;
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        .status-radio:checked+label.alpa-label {
+            border-color: #dc2626;
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #6a4c2f;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            margin-bottom: 8px;
+        }
+
+        .btn-back:hover {
+            color: #ac6700;
+        }
+
+        .btn-back i {
+            font-size: 16px;
+        }
+
+        /* Flex gap untuk action buttons */
+        .action-group {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .menu-sidebar {
+                padding: 10px 14px;
+                font-size: 14px;
+            }
+
+            .menu-sidebar i {
+                font-size: 18px;
+            }
+
+            .pagination-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 12px;
+                border-radius: 8px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container-custom {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 10px 20px;
+                font-size: 13px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-input {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+
+            .section-label-vertical .label-main {
+                font-size: 16px;
+            }
+
+            .section-label-vertical .label-sub {
+                font-size: 12px;
+            }
+
+            .status-radio+label {
+                padding: 3px 10px;
+                font-size: 10px;
+            }
+
+            .btn-back {
+                font-size: 12px;
+            }
+
+            .action-group {
+                gap: 0px;
+            }
+
+            .action-btn {
+                padding: 3px 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="bg-white/95 backdrop-blur-sm shadow-sm border-b border-[#ac6700]/20 sticky top-0 z-50">
+        <div class="container-custom">
+            <div class="flex items-center justify-between h-20">
+
+                <div class="flex items-center gap-4 group cursor-pointer">
+                    <a href="index.html" class="flex items-center gap-4">
+                        <div class="nav-logo transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                            style="width: 50px; height: 50px;">
+                            <img src="./images/auth-logo.png" alt="ETH ROOM Logo" />
+                        </div>
+                        <div class="nav-brand hidden sm:block">
+                            <h1 class="text-xl font-extrabold tracking-wider leading-tight transition-colors duration-300 group-hover:text-[#ac6700]"
+                                style="font-family: 'Black Ops One', cursive; color:#005b1a;">
+                                ETH ROOM<span style="color: #ac6700;">.</span>
+                            </h1>
+                            <p class="text-xs text-[#6a4c2f]/70 leading-tight max-w-xs transition-colors duration-300 ">
+                                Ruang belajar Digital
+                            </p>
+                        </div>
+                        <div class="nav-brand block sm:hidden">
+                            <h1 class="text-xl font-extrabold tracking-wider leading-tight transition-colors duration-300 group-hover:text-[#ac6700]"
+                                style="font-family: 'Black Ops One', cursive; color:#005b1a; position: relative; left: -10px; top:3px;">
+                                ETH ROOM<span style="color: #ac6700;">.</span>
+                            </h1>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-3 sm:gap-5">
+                    <div class="relative flex items-center">
+                        <i
+                            class="ri-notification-3-line text-2xl text-[#ac6700] cursor-pointer hover:text-[#8a5200] transition-colors"></i>
+                        <span
+                            class="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white badge-notif"></span>
+                    </div>
+                    <div class="w-11 h-11 rounded-full overflow-hidden border-2 border-[#005b1a]/60 flex-shrink-0">
+                        <img src="images/foto-guru.jpg" alt="Profile" class="w-full h-full object-cover" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-custom py-8 md:py-12">
+
+        <a href="home-guru.html"
+            class="inline-flex items-center gap-2 text-[#6a4c2f]/60 hover:text-[#ac6700] transition-colors mb-4">
+            <i class="ri-arrow-left-line"></i>
+            <span class="text-sm font-medium">Kembali ke Home</span>
+        </a>
+
+        <div class="section-label-vertical">
+            <span class="dash"></span>
+            <p class="label-main">Classroom</p>
+            <p class="label-sub">Kelola kelas dan pengumuman</p>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-6">
+
+            <!-- ===== SIDEBAR KIRI ===== -->
+            <div class="md:w-56 lg:w-64 flex-shrink-0">
+                <div class="bg-white rounded-2xl p-3 shadow-sm border border-[#ac6700]/10">
+                    <div class="menu-sidebar active" data-menu="kelas">
+                        <i class="ri-group-line"></i>
+                        <span class="font-medium">Daftar Kelas</span>
+                    </div>
+                    <div class="menu-sidebar" data-menu="pengumuman">
+                        <i class="ri-megaphone-line"></i>
+                        <span class="font-medium">Pengumuman</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== KONTEN KANAN ===== -->
+            <div class="flex-1">
+
+                <!-- ===== DAFTAR KELAS ===== -->
+                <div id="content-kelas" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10">
+
+                    <!-- Level 1: Daftar Kelas -->
+                    <div id="level-kelas">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold text-[#005b1a]">Daftar Kelas</h3>
+                            <span class="text-xs text-[#6a4c2f]/60">Total: 3 kelas</span>
+                        </div>
+
+                        <div id="kelas-list" class="space-y-3">
+                            <div class="class-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                                data-kelas="1">
+                                <div>
+                                    <h4 class="font-semibold text-[#005b1a] text-sm">Kelas XII-IPA 1</h4>
+                                    <p class="text-xs text-[#6a4c2f]/60">Wali Kelas: Budi Santoso · 32 Siswa</p>
+                                </div>
+                                <div class="action-group">
+                                    <button class="action-btn eye p-2 rounded-lg btn-lihat-kelas" data-kelas="1">
+                                        <i class="ri-eye-line text-lg"></i>
+                                    </button>
+                                    <button class="action-btn edit p-2 rounded-lg">
+                                        <i class="ri-edit-line text-lg"></i>
+                                    </button>
+                                    <button class="action-btn delete p-2 rounded-lg">
+                                        <i class="ri-delete-bin-line text-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="class-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                                data-kelas="2">
+                                <div>
+                                    <h4 class="font-semibold text-[#005b1a] text-sm">Kelas XII-IPA 2</h4>
+                                    <p class="text-xs text-[#6a4c2f]/60">Wali Kelas: Budi Santoso · 30 Siswa</p>
+                                </div>
+                                <div class="action-group">
+                                    <button class="action-btn eye p-2 rounded-lg btn-lihat-kelas" data-kelas="2">
+                                        <i class="ri-eye-line text-lg"></i>
+                                    </button>
+                                    <button class="action-btn edit p-2 rounded-lg">
+                                        <i class="ri-edit-line text-lg"></i>
+                                    </button>
+                                    <button class="action-btn delete p-2 rounded-lg">
+                                        <i class="ri-delete-bin-line text-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="class-card flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                                data-kelas="3">
+                                <div>
+                                    <h4 class="font-semibold text-[#005b1a] text-sm">Kelas XII-IPA 3</h4>
+                                    <p class="text-xs text-[#6a4c2f]/60">Wali Kelas: Budi Santoso · 28 Siswa</p>
+                                </div>
+                                <div class="action-group">
+                                    <button class="action-btn eye p-2 rounded-lg btn-lihat-kelas" data-kelas="3">
+                                        <i class="ri-eye-line text-lg"></i>
+                                    </button>
+                                    <button class="action-btn edit p-2 rounded-lg">
+                                        <i class="ri-edit-line text-lg"></i>
+                                    </button>
+                                    <button class="action-btn delete p-2 rounded-lg">
+                                        <i class="ri-delete-bin-line text-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <p class="text-sm text-[#6a4c2f]/60">Menampilkan 1-3 dari 3 kelas</p>
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <button class="pagination-btn" disabled><i
+                                        class="ri-arrow-left-s-line text-lg"></i></button>
+                                <button class="pagination-btn active">1</button>
+                                <button class="pagination-btn" disabled><i
+                                        class="ri-arrow-right-s-line text-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Level 2: Daftar Pertemuan -->
+                    <div id="level-pertemuan" class="hidden">
+                        <button class="btn-back" id="btn-kembali-kelas">
+                            <i class="ri-arrow-left-line"></i> Kembali
+                        </button>
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="text-md font-bold text-[#005b1a]">Pertemuan - <span id="kelas-terpilih">XII-IPA
+                                    1</span></h4>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between p-3 bg-[#faf6f0] rounded-xl hover:bg-[#faf6f0]/80 transition cursor-pointer btn-lihat-pertemuan"
+                                data-pertemuan="1">
+                                <span class="font-medium text-[#005b1a] text-sm">Pertemuan 1</span>
+                                <i class="ri-arrow-right-s-line text-[#ac6700]"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-[#faf6f0] rounded-xl hover:bg-[#faf6f0]/80 transition cursor-pointer btn-lihat-pertemuan"
+                                data-pertemuan="2">
+                                <span class="font-medium text-[#005b1a] text-sm">Pertemuan 2</span>
+                                <i class="ri-arrow-right-s-line text-[#ac6700]"></i>
+                            </div>
+                            <div class="flex items-center justify-between p-3 bg-[#faf6f0] rounded-xl hover:bg-[#faf6f0]/80 transition cursor-pointer btn-lihat-pertemuan"
+                                data-pertemuan="3">
+                                <span class="font-medium text-[#005b1a] text-sm">Pertemuan 3</span>
+                                <i class="ri-arrow-right-s-line text-[#ac6700]"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Level 3: Daftar Siswa -->
+                    <div id="level-siswa" class="hidden">
+                        <button class="btn-back" id="btn-kembali-pertemuan">
+                            <i class="ri-arrow-left-line"></i> Kembali
+                        </button>
+                        <div class="flex items-center justify-between mb-4">
+                            <h5 class="text-sm font-bold text-[#005b1a]">Daftar Siswa - <span
+                                    id="pertemuan-terpilih">Pertemuan 1</span></h5>
+                        </div>
+
+                        <button id="btn-tambah-absen"
+                            class="mb-4 px-4 py-2 rounded-xl bg-[#005b1a] text-white text-sm font-medium hover:bg-[#003d12] transition-colors flex items-center gap-2">
+                            <i class="ri-add-line"></i> Tambah Absensi
+                        </button>
+
+                        <div id="siswa-list" class="space-y-3">
+                            <!-- Andi Pratama - Hadir -->
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-[#faf6f0] rounded-xl gap-2">
+                                <span class="font-medium text-[#005b1a] text-sm">Andi Pratama</span>
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <input type="radio" name="status-1" id="hadir-1" value="hadir" class="status-radio"
+                                        checked>
+                                    <label for="hadir-1" class="hadir-label">Hadir</label>
+                                </div>
+                            </div>
+
+                            <!-- Budi Wijaya - Izin -->
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-[#faf6f0] rounded-xl gap-2">
+                                <span class="font-medium text-[#005b1a] text-sm">Budi Wijaya</span>
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <input type="radio" name="status-2" id="izin-2" value="izin" class="status-radio"
+                                        checked>
+                                    <label for="izin-2" class="izin-label">Izin</label>
+                                </div>
+                            </div>
+
+                            <!-- Citra Dewi - Sakit -->
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-[#faf6f0] rounded-xl gap-2">
+                                <span class="font-medium text-[#005b1a] text-sm">Citra Dewi</span>
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <input type="radio" name="status-3" id="sakit-3" value="sakit" class="status-radio"
+                                        checked>
+                                    <label for="sakit-3" class="sakit-label">Sakit</label>
+                                </div>
+                            </div>
+
+                            <!-- Dian Sari - Tidak Hadir -->
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-[#faf6f0] rounded-xl gap-2">
+                                <span class="font-medium text-[#005b1a] text-sm">Dian Sari</span>
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <input type="radio" name="status-4" id="tidak-hadir-4" value="tidak-hadir"
+                                        class="status-radio" checked>
+                                    <label for="tidak-hadir-4" class="tidak-hadir-label">Tidak Hadir</label>
+                                </div>
+                            </div>
+
+                            <!-- Eko Prasetyo - Alpa -->
+                            <div
+                                class="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-[#faf6f0] rounded-xl gap-2">
+                                <span class="font-medium text-[#005b1a] text-sm">Eko Prasetyo</span>
+                                <div class="flex flex-wrap items-center gap-1.5">
+                                    <input type="radio" name="status-5" id="alpa-5" value="alpa" class="status-radio"
+                                        checked>
+                                    <label for="alpa-5" class="alpa-label">Alpa</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ===== PENGUMUMAN ===== -->
+                <div id="content-pengumuman"
+                    class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
+
+                    <!-- Daftar Pengumuman (default) -->
+                    <div id="pengumuman-list">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold text-[#005b1a]">Pengumuman</h3>
+                            <button id="btn-tambah-pengumuman"
+                                class="px-4 py-2 rounded-xl bg-[#ac6700] text-white text-sm font-medium hover:bg-[#8a5200] transition-colors flex items-center gap-2">
+                                <i class="ri-add-line"></i> Tambah
+                            </button>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="class-card">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div>
+                                        <h5 class="font-semibold text-[#005b1a] text-sm">Jadwal Ujian Akhir Semester
+                                        </h5>
+                                        <p class="text-xs text-[#6a4c2f]/60">Dikirim ke: Semua Kelas · 25 Jun 2026</p>
+                                    </div>
+                                    <div class="action-group">
+                                        <button class="action-btn eye p-2 rounded-lg">
+                                            <i class="ri-eye-line text-lg"></i>
+                                        </button>
+                                        <button class="action-btn edit p-2 rounded-lg">
+                                            <i class="ri-edit-line text-lg"></i>
+                                        </button>
+                                        <button class="action-btn delete p-2 rounded-lg">
+                                            <i class="ri-delete-bin-line text-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="class-card">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div>
+                                        <h5 class="font-semibold text-[#005b1a] text-sm">Pengumpulan Tugas Projek</h5>
+                                        <p class="text-xs text-[#6a4c2f]/60">Dikirim ke: XII-IPA 1 · 24 Jun 2026</p>
+                                    </div>
+                                    <div class="action-group">
+                                        <button class="action-btn eye p-2 rounded-lg">
+                                            <i class="ri-eye-line text-lg"></i>
+                                        </button>
+                                        <button class="action-btn edit p-2 rounded-lg">
+                                            <i class="ri-edit-line text-lg"></i>
+                                        </button>
+                                        <button class="action-btn delete p-2 rounded-lg">
+                                            <i class="ri-delete-bin-line text-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="class-card">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                    <div>
+                                        <h5 class="font-semibold text-[#005b1a] text-sm">Pembagian Rapor</h5>
+                                        <p class="text-xs text-[#6a4c2f]/60">Dikirim ke: XII-IPA 2 · 23 Jun 2026</p>
+                                    </div>
+                                    <div class="action-group">
+                                        <button class="action-btn eye p-2 rounded-lg">
+                                            <i class="ri-eye-line text-lg"></i>
+                                        </button>
+                                        <button class="action-btn edit p-2 rounded-lg">
+                                            <i class="ri-edit-line text-lg"></i>
+                                        </button>
+                                        <button class="action-btn delete p-2 rounded-lg">
+                                            <i class="ri-delete-bin-line text-lg"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <p class="text-sm text-[#6a4c2f]/60">Menampilkan 1-3 dari 3 pengumuman</p>
+                            <div class="flex items-center gap-1.5 sm:gap-2">
+                                <button class="pagination-btn" disabled><i
+                                        class="ri-arrow-left-s-line text-lg"></i></button>
+                                <button class="pagination-btn active">1</button>
+                                <button class="pagination-btn" disabled><i
+                                        class="ri-arrow-right-s-line text-lg"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Pengumuman -->
+                    <div id="pengumuman-form" class="hidden">
+                        <button class="btn-back" id="btn-kembali-pengumuman">
+                            <i class="ri-arrow-left-line"></i> Kembali
+                        </button>
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-bold text-[#005b1a]">Buat Pengumuman</h3>
+                        </div>
+
+                        <form class="space-y-5">
+                            <div>
+                                <label class="form-label">Judul Pengumuman</label>
+                                <input type="text" placeholder="Masukkan judul pengumuman" class="form-input" />
+                            </div>
+
+                            <div>
+                                <label class="form-label">Keterangan / Informasi</label>
+                                <textarea rows="4" placeholder="Tulis keterangan pengumuman..."
+                                    class="form-input resize-none"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="form-label">Link (Opsional)</label>
+                                <input type="url" placeholder="https://example.com" class="form-input" />
+                            </div>
+
+                            <div>
+                                <label class="form-label">Kelas</label>
+                                <select class="select-input">
+                                    <option value="semua">Semua Kelas</option>
+                                    <option value="xii-ipa-1">XII-IPA 1</option>
+                                    <option value="xii-ipa-2">XII-IPA 2</option>
+                                    <option value="xii-ipa-3">XII-IPA 3</option>
+                                </select>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                                <button type="submit" class="btn-primary flex items-center justify-center gap-2">
+                                    <i class="ri-send-plane-line"></i> Kirim Pengumuman
+                                </button>
+                                <button type="reset" class="btn-secondary flex items-center justify-center gap-2">
+                                    <i class="ri-close-line"></i> Batal
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center mt-8 pt-6 border-t border-[#ac6700]/10">
+            <p class="text-xs text-[#6a4c2f]/50">
+                &copy; 2026 ETH ROOM · Platform Pembelajaran Berbasis Etnopedagogi
+            </p>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    </script>
+
+    <script>
+        // Sidebar navigation
+        const menus = document.querySelectorAll('.menu-sidebar');
+        const contents = {
+            kelas: document.getElementById('content-kelas'),
+            pengumuman: document.getElementById('content-pengumuman')
+        };
+
+        menus.forEach(menu => {
+            menu.addEventListener('click', function () {
+                menus.forEach(m => m.classList.remove('active'));
+                this.classList.add('active');
+
+                const menuKey = this.getAttribute('data-menu');
+                Object.keys(contents).forEach(key => {
+                    contents[key].classList.toggle('hidden', key !== menuKey);
+                });
+            });
+        });
+
+        // ===== DAFTAR KELAS NAVIGASI =====
+        const levelKelas = document.getElementById('level-kelas');
+        const levelPertemuan = document.getElementById('level-pertemuan');
+        const levelSiswa = document.getElementById('level-siswa');
+        const kelasTerpilih = document.getElementById('kelas-terpilih');
+        const pertemuanTerpilih = document.getElementById('pertemuan-terpilih');
+
+        // Lihat Kelas -> tampilkan pertemuan
+        document.querySelectorAll('.btn-lihat-kelas').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const kelasNama = this.closest('.class-card').querySelector('h4').textContent;
+                kelasTerpilih.textContent = kelasNama;
+                levelKelas.classList.add('hidden');
+                levelPertemuan.classList.remove('hidden');
+                levelSiswa.classList.add('hidden');
+            });
+        });
+
+        // Kembali ke daftar kelas
+        document.getElementById('btn-kembali-kelas').addEventListener('click', function () {
+            levelKelas.classList.remove('hidden');
+            levelPertemuan.classList.add('hidden');
+            levelSiswa.classList.add('hidden');
+        });
+
+        // Lihat Pertemuan -> tampilkan siswa
+        document.querySelectorAll('.btn-lihat-pertemuan').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const pertemuan = this.getAttribute('data-pertemuan');
+                pertemuanTerpilih.textContent = 'Pertemuan ' + pertemuan;
+                levelPertemuan.classList.add('hidden');
+                levelSiswa.classList.remove('hidden');
+            });
+        });
+
+        // Kembali ke pertemuan
+        document.getElementById('btn-kembali-pertemuan').addEventListener('click', function () {
+            levelPertemuan.classList.remove('hidden');
+            levelSiswa.classList.add('hidden');
+        });
+
+        // ===== PENGUMUMAN =====
+        const pengumumanList = document.getElementById('pengumuman-list');
+        const pengumumanForm = document.getElementById('pengumuman-form');
+
+        document.getElementById('btn-tambah-pengumuman').addEventListener('click', function () {
+            pengumumanList.classList.add('hidden');
+            pengumumanForm.classList.remove('hidden');
+        });
+
+        document.getElementById('btn-kembali-pengumuman').addEventListener('click', function () {
+            pengumumanList.classList.remove('hidden');
+            pengumumanForm.classList.add('hidden');
+        });
+
+        // Kirim Pengumuman
+        document.querySelector('#pengumuman-form form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            Swal.fire({
+                title: 'Berhasil!',
+                text: 'Pengumuman berhasil dikirim.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+            });
+            this.reset();
+            pengumumanList.classList.remove('hidden');
+            pengumumanForm.classList.add('hidden');
+        });
+
+        // ===== AKSI LAINNYA =====
+        // Tambah Absensi
+        document.getElementById('btn-tambah-absen').addEventListener('click', function () {
+            Swal.fire({
+                title: 'Tambah Absensi',
+                text: 'Fitur tambah absensi sedang dalam pengembangan.',
+                icon: 'info',
+                confirmButtonColor: '#ac6700',
+                confirmButtonText: 'OK'
+            });
+        });
+
+        // Edit kelas
+        document.querySelectorAll('.action-btn.edit').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const card = this.closest('.class-card');
+                const nama = card.querySelector('h4').textContent;
+                Swal.fire({
+                    title: 'Edit Kelas',
+                    text: `Fitur edit untuk "${nama}" sedang dalam pengembangan.`,
+                    icon: 'info',
+                    confirmButtonColor: '#ac6700',
+                    confirmButtonText: 'OK'
+                });
+            });
+        });
+
+        // Hapus kelas
+        document.querySelectorAll('.action-btn.delete').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const card = this.closest('.class-card');
+                const nama = card.querySelector('h4').textContent;
+                Swal.fire({
+                    title: 'Hapus Kelas?',
+                    text: `Apakah Anda yakin ingin menghapus "${nama}"?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#6a4c2f',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        card.remove();
+                        Swal.fire({
+                            title: 'Terhapus!',
+                            text: `"${nama}" telah dihapus.`,
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    }
+                });
+            });
+        });
+
+        // Hapus pengumuman
+        document.querySelectorAll('#pengumuman-list .action-btn.delete').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const card = this.closest('.class-card');
+                const judul = card.querySelector('h5').textContent;
+                Swal.fire({
+                    title: 'Hapus Pengumuman?',
+                    text: `Apakah Anda yakin ingin menghapus "${judul}"?`,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#ef4444',
+                    cancelButtonColor: '#6a4c2f',
+                    confirmButtonText: 'Ya, Hapus',
+                    cancelButtonText: 'Batal',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        card.remove();
+                        Swal.fire({
+                            title: 'Terhapus!',
+                            text: 'Pengumuman telah dihapus.',
+                            icon: 'success',
+                            timer: 1500,
+                            showConfirmButton: false
+                        });
+                    }
+                });
+            });
+        });
+
+        // Eye pengumuman
+        document.querySelectorAll('#pengumuman-list .action-btn.eye').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const card = this.closest('.class-card');
+                const judul = card.querySelector('h5').textContent;
+                Swal.fire({
+                    title: `Detail Pengumuman`,
+                    html: `
+                        <div class="text-left text-sm">
+                            <p><strong>Judul:</strong> ${judul}</p>
+                            <p><strong>Dikirim ke:</strong> ${card.querySelector('p').textContent}</p>
+                            <hr class="my-3 border-[#ac6700]/20" />
+                            <p class="text-[#6a4c2f]">Isi pengumuman akan ditampilkan di sini.</p>
+                        </div>
+                    `,
+                    icon: 'info',
+                    confirmButtonColor: '#ac6700',
+                    confirmButtonText: 'Tutup',
+                    customClass: {
+                        popup: 'swal2-popup',
+                        confirmButton: 'swal2-confirm'
+                    }
+                });
+            });
+        });
+
+        // Edit pengumuman
+        document.querySelectorAll('#pengumuman-list .action-btn.edit').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const card = this.closest('.class-card');
+                const judul = card.querySelector('h5').textContent;
+                Swal.fire({
+                    title: 'Edit Pengumuman',
+                    text: `Fitur edit untuk "${judul}" sedang dalam pengembangan.`,
+                    icon: 'info',
+                    confirmButtonColor: '#ac6700',
+                    confirmButtonText: 'OK'
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

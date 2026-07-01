@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ETH ROOM | Modalities</title>
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background: #faf6f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+            width: 100%;
+        }
+
+        .modality-card {
+            transition: all 0.3s ease;
+            border: 1.5px solid #e5e7eb;
+            background: white;
+            border-radius: 16px;
+            padding: 32px 20px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .modality-card:hover {
+            border-color: #ac6700;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(172, 103, 0, 0.12);
+        }
+
+        .modality-card.active {
+            border-color: #005b1a;
+            background: rgba(0, 91, 26, 0.05);
+            box-shadow: 0 4px 20px rgba(0, 91, 26, 0.12);
+        }
+
+        .modality-card .icon-wrapper {
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 32px;
+            background: rgba(172, 103, 0, 0.10);
+            color: #ac6700;
+            transition: all 0.3s ease;
+        }
+
+        .modality-card.active .icon-wrapper {
+            background: #005b1a;
+            color: white;
+        }
+
+        .btn-primary {
+            transition: all 0.3s ease;
+            background: #ac6700;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            background: #8a5200;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(172, 103, 0, 0.25);
+        }
+
+        .btn-secondary {
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #6a4c2f;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: 1.5px solid rgba(172, 103, 0, 0.20);
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #faf6f0;
+            border-color: #ac6700;
+        }
+
+        .btn-success {
+            transition: all 0.3s ease;
+            background: #005b1a;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-success:hover {
+            background: #003d12;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 91, 26, 0.25);
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px 24px;
+            border: 1px solid rgba(172, 103, 0, 0.10);
+            transition: all 0.3s ease;
+        }
+
+        .question-card:hover {
+            border-color: #ac6700;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1.5px solid rgba(172, 103, 0, 0.10);
+            background: white;
+        }
+
+        .option-label:hover {
+            border-color: #ac6700;
+            background: rgba(172, 103, 0, 0.03);
+        }
+
+        .option-label input[type="radio"] {
+            accent-color: #ac6700;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .option-label input[type="radio"]:checked+.option-text {
+            color: #ac6700;
+            font-weight: 600;
+        }
+
+        .option-label:has(input:checked) {
+            border-color: #ac6700;
+            background: rgba(172, 103, 0, 0.05);
+        }
+
+        .ai-box {
+            background: linear-gradient(135deg, rgba(172, 103, 0, 0.05), rgba(0, 91, 26, 0.05));
+            border: 1.5px solid rgba(172, 103, 0, 0.15);
+            border-radius: 16px;
+            padding: 20px 24px;
+        }
+
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 24px;
+        }
+
+        .step-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(172, 103, 0, 0.20);
+            transition: all 0.3s ease;
+        }
+
+        .step-dot.active {
+            background: #ac6700;
+            width: 28px;
+            border-radius: 5px;
+        }
+
+        .step-dot.done {
+            background: #005b1a;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #6a4c2f;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            margin-bottom: 8px;
+        }
+
+        .back-btn:hover {
+            color: #ac6700;
+        }
+
+        .back-btn i {
+            font-size: 16px;
+        }
+
+        .btn-hide {
+            display: none !important;
+        }
+
+        @media (max-width: 640px) {
+            .container-custom {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .modality-card {
+                padding: 20px 16px;
+            }
+
+            .modality-card .icon-wrapper {
+                width: 56px;
+                height: 56px;
+                font-size: 24px;
+            }
+
+            .btn-primary,
+            .btn-secondary,
+            .btn-success {
+                padding: 10px 20px;
+                font-size: 13px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .question-card {
+                padding: 16px;
+            }
+
+            .step-dot {
+                width: 8px;
+                height: 8px;
+            }
+
+            .step-dot.active {
+                width: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container-custom py-8 md:py-12">
+
+        <!-- ===== STEP 1: Pilih Modality ===== -->
+        <div id="step1" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10">
+            <h2 class="text-xl font-bold text-[#005b1a] text-center mb-2">Silahkan Pilih Learning Modalities</h2>
+            <p class="text-sm text-[#6a4c2f]/60 text-center mb-6">Pilih gaya belajar yang paling sesuai dengan
+                preferensimu</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
+                <div class="modality-card" data-modality="visual" onclick="selectModality(this)">
+                    <div class="icon-wrapper"><i class="ri-eye-line"></i></div>
+                    <h3 class="text-lg font-bold text-[#005b1a]">Visual</h3>
+                    <p class="text-xs text-[#6a4c2f]/60 mt-1">Belajar melalui gambar, diagram, dan visualisasi</p>
+                </div>
+                <div class="modality-card" data-modality="auditory" onclick="selectModality(this)">
+                    <div class="icon-wrapper"><i class="ri-volume-up-line"></i></div>
+                    <h3 class="text-lg font-bold text-[#005b1a]">Auditory</h3>
+                    <p class="text-xs text-[#6a4c2f]/60 mt-1">Belajar melalui pendengaran, musik, dan diskusi</p>
+                </div>
+                <div class="modality-card" data-modality="kinestetic" onclick="selectModality(this)">
+                    <div class="icon-wrapper"><i class="ri-run-line"></i></div>
+                    <h3 class="text-lg font-bold text-[#005b1a]">Kinestetic</h3>
+                    <p class="text-xs text-[#6a4c2f]/60 mt-1">Belajar melalui gerakan, sentuhan, dan praktik langsung
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 pt-4 border-t border-[#ac6700]/10">
+                <button onclick="goToStep2()" class="btn-primary" id="btnNext1">
+                    Lanjut
+                </button>
+                <button onclick="cancelModality()" class="btn-secondary btn-hide" id="btnBatal1">
+                    Batal
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== STEP 2: Soal + AI ===== -->
+        <div id="step2" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
+            <button class="back-btn" onclick="goToStep1()">
+                <i class="ri-arrow-left-line"></i> Kembali
+            </button>
+
+            <h2 class="text-xl font-bold text-[#005b1a] mb-2">Soal Latihan <span id="modality-label">(Visual)</span>
+            </h2>
+            <p class="text-sm text-[#6a4c2f]/60 mb-6">Jawablah 1 soal pilihan ganda berikut</p>
+
+            <div id="questions-container" class="space-y-4">
+                <!-- Soal akan di-generate oleh JS -->
+            </div>
+
+            <div class="mt-6">
+                <button onclick="submitAnswers()" class="btn-success mx-auto">
+                    Submit Jawaban
+                </button>
+            </div>
+
+            <div id="ai-rekomendasi" class="mt-6 hidden">
+                <div class="ai-box">
+                    <div class="flex items-start gap-3">
+                        <i class="ri-google-gemini-fill text-2xl text-[#ac6700] flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-[#005b1a] text-sm">Rekomendasi AI </h4>
+                            <p id="ai-text" class="text-sm text-[#6a4c2f]/70 mt-1">Berdasarkan jawabanmu, kamu memiliki
+                                pemahaman yang baik pada materi ini. Disarankan untuk lebih banyak berlatih soal tipe
+                                penalaran dan aplikasi. Terus semangat belajar! </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-4">
+                    <button onclick="goToStep3()" class="btn-primary">
+                        Lanjut
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== STEP 3: Pilih Kognitive Level ===== -->
+        <div id="step3" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
+            <h2 class="text-xl font-bold text-[#005b1a] text-center mb-2">Pilih Kognitive Level</h2>
+            <p class="text-sm text-[#6a4c2f]/60 text-center mb-6">Pilih tingkat kognitif yang sesuai dengan kemampuanmu
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 max-w-2xl mx-auto">
+                <div class="modality-card" data-level="low" onclick="selectLevel(this)">
+                    <div class="icon-wrapper"><i class="ri-stack-line"></i></div>
+                    <h3 class="text-lg font-bold text-[#005b1a]">Low</h3>
+                    <p class="text-xs text-[#6a4c2f]/60 mt-1">Soal pemahaman dasar dan konsep</p>
+                </div>
+                <div class="modality-card" data-level="high" onclick="selectLevel(this)">
+                    <div class="icon-wrapper"><i class="ri-stackshare-line"></i></div>
+                    <h3 class="text-lg font-bold text-[#005b1a]">High</h3>
+                    <p class="text-xs text-[#6a4c2f]/60 mt-1">Soal penalaran, analisis, dan evaluasi</p>
+                </div>
+            </div>
+
+            <div
+                class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-6 pt-4 border-t border-[#ac6700]/10">
+                <button onclick="goToStep4()" class="btn-primary" id="btnNext3">
+                    Lanjut
+                </button>
+                <button onclick="cancelLevel()" class="btn-secondary btn-hide" id="btnBatal3">
+                    Batal
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== STEP 4: Soal Kognitive + AI ===== -->
+        <div id="step4" class="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-[#ac6700]/10 hidden">
+            <button class="back-btn" onclick="goToStep3()">
+                <i class="ri-arrow-left-line"></i> Kembali
+            </button>
+
+            <h2 class="text-xl font-bold text-[#005b1a] mb-2">Soal Kognitive <span id="level-label">(Low)</span></h2>
+            <p class="text-sm text-[#6a4c2f]/60 mb-6">Jawablah 1 soal pilihan ganda berikut</p>
+
+            <div id="questions-container-2" class="space-y-4">
+                <!-- Soal akan di-generate oleh JS -->
+            </div>
+
+            <div class="mt-6">
+                <button onclick="submitAnswers2()" class="btn-success mx-auto">
+                    Submit Jawaban
+                </button>
+            </div>
+
+            <div id="ai-rekomendasi-2" class="mt-6 hidden">
+                <div class="ai-box">
+                    <div class="flex items-start gap-3">
+                        <i class="ri-google-gemini-fill text-2xl text-[#ac6700] flex-shrink-0 mt-1"></i>
+                        <div>
+                            <h4 class="font-semibold text-[#005b1a] text-sm">Rekomendasi AI </h4>
+                            <p id="ai-text-2" class="text-sm text-[#6a4c2f]/70 mt-1">Hasil analisis menunjukkan kamu
+                                mampu menyelesaikan soal dengan baik. Untuk meningkatkan kemampuan, coba kerjakan soal
+                                dengan tingkat kesulitan yang lebih tinggi. Pertahankan semangat belajarmu! </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mt-4">
+                    <button onclick="finish()" class="btn-primary">
+                        Selesai
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== STEP INDICATOR ===== -->
+        <div class="step-indicator">
+            <span class="step-dot active" id="dot1"></span>
+            <span class="step-dot" id="dot2"></span>
+            <span class="step-dot" id="dot3"></span>
+            <span class="step-dot" id="dot4"></span>
+        </div>
+
+        <div class="text-center mt-8 pt-6 border-t border-[#ac6700]/10">
+            <p class="text-xs text-[#6a4c2f]/50">
+                &copy; 2026 ETH ROOM · Platform Pembelajaran Berbasis Etnopedagogi
+            </p>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    </script>
+
+    <script>
+        // ===== VARIABLES =====
+        let selectedModality = null;
+        let selectedLevel = null;
+        let step2Submitted = false;
+        let step4Submitted = false;
+
+        // ===== QUESTIONS DATA BERDASARKAN MODALITY =====
+        const modalityQuestions = {
+            visual: {
+                q: 'Bagaimana cara terbaik untuk memahami diagram alir (flowchart) dalam pemrograman?',
+                options: [
+                    'Membaca teks penjelasan tanpa melihat diagram',
+                    'Melihat diagram dengan seksama dan menghubungkan setiap simbol',
+                    'Mendengarkan penjelasan guru tanpa melihat diagram',
+                    'Mempraktikkan langsung menulis kode tanpa melihat diagram'
+                ]
+            },
+            auditory: {
+                q: 'Bagaimana cara paling efektif untuk memahami konsep baru dalam pelajaran?',
+                options: [
+                    'Membaca buku teks secara mandiri',
+                    'Mendengarkan penjelasan guru atau diskusi kelompok',
+                    'Membuat gambar atau diagram konsep',
+                    'Melakukan praktik langsung di laboratorium'
+                ]
+            },
+            kinestetic: {
+                q: 'Bagaimana cara terbaik untuk memahami proses reaksi kimia?',
+                options: [
+                    'Menonton video animasi reaksi kimia',
+                    'Mendengarkan penjelasan guru tentang reaksi kimia',
+                    'Melakukan percobaan langsung di laboratorium',
+                    'Membaca buku tentang teori reaksi kimia'
+                ]
+            }
+        };
+
+        // ===== QUESTIONS DATA BERDASARKAN LEVEL =====
+        const levelQuestions = {
+            low: {
+                q: 'Apa yang dimaksud dengan variabel dalam pemrograman?',
+                options: [
+                    'Tempat menyimpan data sementara',
+                    'Fungsi untuk menghitung angka',
+                    'Perulangan pada program',
+                    'Percabangan kondisi program'
+                ]
+            },
+            high: {
+                q: 'Bagaimana algoritma pencarian biner (binary search) dapat meningkatkan efisiensi pencarian data?',
+                options: [
+                    'Dengan memeriksa setiap data satu per satu',
+                    'Dengan membagi data menjadi dua bagian dan membandingkan nilai tengah',
+                    'Dengan mengacak data sebelum mencari',
+                    'Dengan menyimpan semua data dalam satu variabel'
+                ]
+            }
+        };
+
+        // ===== STEP 1: MODALITY =====
+        function selectModality(el) {
+            document.querySelectorAll('#step1 .modality-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            selectedModality = el.getAttribute('data-modality');
+            document.getElementById('btnBatal1').classList.remove('btn-hide');
+        }
+
+        function cancelModality() {
+            document.querySelectorAll('#step1 .modality-card').forEach(c => c.classList.remove('active'));
+            selectedModality = null;
+            document.getElementById('btnBatal1').classList.add('btn-hide');
+        }
+
+        function goToStep2() {
+            if (!selectedModality) {
+                alert('Silahkan pilih learning modalities terlebih dahulu!');
+                return;
+            }
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.add('hidden');
+            updateDots(2);
+
+            const labels = { visual: 'Visual', auditory: 'Auditory', kinestetic: 'Kinestetic' };
+            document.getElementById('modality-label').textContent = `(${labels[selectedModality]})`;
+
+            generateSingleQuestion('questions-container', selectedModality);
+            document.getElementById('ai-rekomendasi').classList.add('hidden');
+            step2Submitted = false;
+        }
+
+        // ===== GENERATE SINGLE QUESTION =====
+        function generateSingleQuestion(containerId, type) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            let data;
+            if (type === 'visual' || type === 'auditory' || type === 'kinestetic') {
+                data = modalityQuestions[type];
+            } else {
+                data = levelQuestions[type] || levelQuestions.low;
+            }
+
+            const div = document.createElement('div');
+            div.className = 'question-card';
+            div.innerHTML = `
+                <p class="font-semibold text-[#005b1a] text-sm mb-3">1. ${data.q}</p>
+                <div class="space-y-2">
+                    ${data.options.map((opt, i) => `
+                        <label class="option-label">
+                            <input type="radio" name="q1" value="${String.fromCharCode(65 + i)}" />
+                            <span class="option-text text-sm text-[#6a4c2f]">${String.fromCharCode(65 + i)}. ${opt}</span>
+                        </label>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function submitAnswers() {
+            const container = document.getElementById('questions-container');
+            const radio = container.querySelector('input[type="radio"]:checked');
+            if (!radio) {
+                alert('Silahkan pilih salah satu jawaban terlebih dahulu!');
+                return;
+            }
+            step2Submitted = true;
+            document.getElementById('ai-rekomendasi').classList.remove('hidden');
+            document.getElementById('ai-rekomendasi').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ===== STEP 3: KOGNITIVE LEVEL =====
+        function selectLevel(el) {
+            document.querySelectorAll('#step3 .modality-card').forEach(c => c.classList.remove('active'));
+            el.classList.add('active');
+            selectedLevel = el.getAttribute('data-level');
+            document.getElementById('btnBatal3').classList.remove('btn-hide');
+        }
+
+        function cancelLevel() {
+            document.querySelectorAll('#step3 .modality-card').forEach(c => c.classList.remove('active'));
+            selectedLevel = null;
+            document.getElementById('btnBatal3').classList.add('btn-hide');
+        }
+
+        function goToStep3() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+            document.getElementById('step4').classList.add('hidden');
+            updateDots(3);
+        }
+
+        function goToStep4() {
+            if (!selectedLevel) {
+                alert('Silahkan pilih kognitive level terlebih dahulu!');
+                return;
+            }
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.remove('hidden');
+            updateDots(4);
+
+            const labels = { low: 'Low', high: 'High' };
+            document.getElementById('level-label').textContent = `(${labels[selectedLevel]})`;
+
+            generateSingleQuestion('questions-container-2', selectedLevel);
+            document.getElementById('ai-rekomendasi-2').classList.add('hidden');
+            step4Submitted = false;
+        }
+
+        function submitAnswers2() {
+            const container = document.getElementById('questions-container-2');
+            const radio = container.querySelector('input[type="radio"]:checked');
+            if (!radio) {
+                alert('Silahkan pilih salah satu jawaban terlebih dahulu!');
+                return;
+            }
+            step4Submitted = true;
+            document.getElementById('ai-rekomendasi-2').classList.remove('hidden');
+            document.getElementById('ai-rekomendasi-2').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // ===== STEP NAVIGATION =====
+        function goToStep1() {
+            document.getElementById('step1').classList.remove('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.add('hidden');
+            updateDots(1);
+        }
+
+        function finish() {
+            Swal.fire({
+                title: 'Selamat! 🎉',
+                text: 'Kamu telah menyelesaikan semua tahap Learning Modalities!',
+                icon: 'success',
+                confirmButtonColor: '#ac6700',
+                confirmButtonText: 'OK'
+            }).then(() => {
+                window.location.href = 'home-siswa.html';
+            });
+        }
+
+        // ===== STEP INDICATOR =====
+        function updateDots(step) {
+            for (let i = 1; i <= 4; i++) {
+                const dot = document.getElementById(`dot${i}`);
+                dot.className = 'step-dot';
+                if (i < step) dot.classList.add('done');
+                if (i === step) dot.classList.add('active');
+            }
+        }
+
+        // ===== KEYBOARD NAVIGATION =====
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const step1 = !document.getElementById('step1').classList.contains('hidden');
+                const step2 = !document.getElementById('step2').classList.contains('hidden');
+                const step3 = !document.getElementById('step3').classList.contains('hidden');
+                const step4 = !document.getElementById('step4').classList.contains('hidden');
+
+                if (step1 && selectedModality) goToStep2();
+                else if (step2 && !step2Submitted) submitAnswers();
+                else if (step2 && step2Submitted) goToStep3();
+                else if (step3 && selectedLevel) goToStep4();
+                else if (step4 && !step4Submitted) submitAnswers2();
+                else if (step4 && step4Submitted) finish();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
